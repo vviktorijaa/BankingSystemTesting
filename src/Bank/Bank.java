@@ -7,9 +7,7 @@ import Exceptions.MaxBalance;
 import Exceptions.MaxWithdraw;
 
 public class Bank implements Serializable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private BankAccount[] accounts= new BankAccount[100];
 	public int addAccount(BankAccount acc)
@@ -57,13 +55,11 @@ public class Bank implements Serializable {
 			{
 				return getAccounts()[i];
 			}
-			
 		}
 		return null;
 	}
 	
 	public void deposit(String aacountNum, double amt) throws InvalidAmount,AccNotFound
-	
 	{
 		if(amt<0)
 		{
@@ -77,9 +73,7 @@ public class Bank implements Serializable {
 		if(temp!=null)
 		{
 			temp.deposit(amt);
-			
 		}
-		
 	}
 	
 	
@@ -91,13 +85,12 @@ public class Bank implements Serializable {
 		{
 			throw new AccNotFound("Account Not Found");
 		}
-		
 		if(amt<=0)
 		{
 			throw new InvalidAmount("Invalid Amount");
 		}
-		
-		if(amt>temp.getbalance())
+
+		if(amt>temp.getBalance())
 		{
 			throw new MaxBalance("Insufficient Balance");
 		}
@@ -111,7 +104,6 @@ public class Bank implements Serializable {
 	{
 		DefaultListModel<String> list=new DefaultListModel<String>();
 		int i;
-//		String type=null;
 	
 		for(i=0;i<100;i++)
 		{
@@ -119,26 +111,9 @@ public class Bank implements Serializable {
 			{
 				break;
 			}
-//			if(getAccounts()[i].getClass().toString().equals("class Bank.SavingsAccount"))
-//			{
-//				type="Type: Savings Account";
-//			}
-//			
-//			else if(getAccounts()[i].getClass().toString().equals("class Bank.CurrentAccount"))
-//			{
-//				type="Type: Current Account";
-//			}
-//			
-//			else if(getAccounts()[i].getClass().toString().equals("class Bank.StudentAccount"))
-//			{
-//				type="Type: Student Account";
-//			}
 			
 			list.addElement(getAccounts()[i].toString());
-			
-			
 		}
-		
 		return list;
 	}
 
@@ -149,5 +124,4 @@ public class Bank implements Serializable {
 	public void setAccounts(BankAccount[] accounts) {
 		this.accounts = accounts;
 	}
-	
 }

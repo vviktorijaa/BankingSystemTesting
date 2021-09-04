@@ -33,6 +33,4 @@ public class SavingsAccount extends BankAccount {
 
         return amount;
     }
-	
-	
 }

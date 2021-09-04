@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 public class PitestBankAccount {
 
     @Test
-    public void testBankAccountConstructor(){
+    public void testBankAccountConstructor() {
         BankAccount ba = new BankAccount("Example", 1000, 500);
         assertEquals(1000, ba.getBalance(), 0);
         assertEquals(500, ba.getMinBalance(), 0);
@@ -16,47 +16,53 @@ public class PitestBankAccount {
     }
 
     @Test
-    public void testAccNumber(){ //integer addition with subtraction killed
+    public void testAccNumber(){ //Replaced double multiplication with division → KILLED //Replaced integer addition with subtraction → KILLED
         BankAccount ba = new BankAccount("BankAccount", 1000, 500);
-        assertTrue(Integer.parseInt(ba.getAccNumber()) > 0);
+        assertTrue(Integer.parseInt(ba.getAccNumber()) > 11000);
+        /*
+        Math.random / 89999 = kje se dobie broj mnogu blizok do 0
+        + 10 000 na ovoj rezultat = 10 000,0000000...01933 (primer)
+        zatoa, expected e > 11 000, mutantot tuka se nishti (bidejki
+        kje e broj mnogu blizok do 10 000)
+         */
     }
 
     @Test
-    public void testSetAndGetName(){
+    public void testSetAndGetName() {
         BankAccount ba = new BankAccount();
         ba.setName("ExampleName");
         assertEquals(ba.getName(), "ExampleName");
     }
 
     @Test
-    public void testSetAndGetBalance(){
+    public void testSetAndGetBalance() {
         BankAccount ba = new BankAccount();
         ba.setBalance(1000.0);
         assertEquals(ba.getBalance(), 1000.0, 0);
     }
 
     @Test
-    public void testSetAndGetMinBalance(){
+    public void testSetAndGetMinBalance() {
         BankAccount ba = new BankAccount();
         ba.setMinBalance(0);
         assertEquals(ba.getMinBalance(), 0, 0);
     }
 
     @Test
-    public void testDepositMethod(){
-        BankAccount ba=new BankAccount("Name", 500, 0);
+    public void testDepositMethod() {
+        BankAccount ba = new BankAccount("Name", 500, 0);
         assertEquals(ba.deposit(100), 600, 0);
     }
 
     @Test
     public void testWithdrawMethod() throws MaxBalance, MaxWithdraw {   //ОК
-        BankAccount ba=new BankAccount("BankAccount", 1500, 0);
+        BankAccount ba = new BankAccount("BankAccount", 1500, 0);
         assertTrue(ba.withdraw(500) == 1000);
     }
 
     @Test
-    public void testWithdrawMethodException(){  //ОК
-        BankAccount ba=new BankAccount("BankAccount", 500, 0);
+    public void testWithdrawMethodException() {  //ОК
+        BankAccount ba = new BankAccount("BankAccount", 500, 0);
         assertThrows(MaxBalance.class, () -> {
             ba.withdraw(1500);
         });
@@ -64,13 +70,29 @@ public class PitestBankAccount {
 
     @Test
     public void testWithdrawNarrowCase() throws MaxBalance, MaxWithdraw {   //amount<min_balance mutant killed
-        BankAccount ba=new BankAccount("BankAccount", 1500, 100);
+        BankAccount ba = new BankAccount("BankAccount", 1500, 100);
         assertEquals(ba.withdraw(1400), 100, 0);
     }
 
     @Test
-    public void testToStringMethod(){   //ОК
-        BankAccount ba=new BankAccount("BankAccount", 200, 0);
-        assertEquals(ba.toString(), "Name: BankAccount, Id: " + ba.getAccNumber() + ", Balance: 200.0, Type: "+BankAccount.class);
+    public void testWithdrawMethod1() { //Replaced double subtraction with addition → KILLED
+        BankAccount ba = new BankAccount("BankAccount", 200, 200);
+        assertThrows(MaxBalance.class, () -> {
+            ba.withdraw(30);
+        });
+    }
+
+    @Test
+    public void testWithdrawMethod2() { //changed conditional boundary killed
+        BankAccount ba = new BankAccount("BankAccount", 200, 0);
+        assertThrows(MaxBalance.class, () -> {
+            ba.withdraw(200);
+        });
+    }
+
+    @Test
+    public void testToStringMethod() {   //ОК
+        BankAccount ba = new BankAccount("BankAccount", 200, 0);
+        assertEquals(ba.toString(), "Name: BankAccount, Id: " + ba.getAccNumber() + ", Balance: 200.0, Type: " + BankAccount.class);
     }
 }

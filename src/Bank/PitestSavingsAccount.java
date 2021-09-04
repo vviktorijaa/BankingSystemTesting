@@ -15,16 +15,22 @@ public class PitestSavingsAccount {
     }
 
     @Test
-    public void testWithdrawMethod() throws MaxBalance, MaxWithdraw {
+    public void testGetNetBalance1(){
+        SavingsAccount sa = new SavingsAccount("SavingsAccount", 100, 0);
+        assertEquals(sa.getNetBalance(), 105, 0.1);
+    }
+
+    @Test
+    public void testWithdrawMethod() throws MaxBalance, MaxWithdraw {   //replaced double return with 0.0d for Bank/SavingsAccount::withdraw
         SavingsAccount sa = new SavingsAccount("SavingsAccount", 5000, 2500);
         assertEquals(sa.withdraw(500), 500, 0);
     }
 
     @Test
-    public void testWithdrawMethodException() {
+    public void testWithdrawMethod1() throws MaxBalance, MaxWithdraw {   //replaced double return with 0.0d for Bank/SavingsAccount::withdraw
+        SavingsAccount sa = new SavingsAccount("SavingsAccount", 5000, 2500);
         assertThrows(MaxWithdraw.class, () ->{
-            SavingsAccount sa = new SavingsAccount("SavingsAccount", 5000, 2500);
-            sa.withdraw(20000);
+            sa.withdraw(2500);
         });
     }
 }

@@ -13,10 +13,8 @@ public class Bank implements Serializable {
 	public int addAccount(BankAccount acc)
 	{
 		int i=0;
-		for(i=0;i<100;i++)
-		{
-			if(getAccounts()[i]==null)
-			{
+		for(i=0;i<100;i++) {
+			if(getAccounts()[i]==null) {
 				break;
 			}
 		}
@@ -24,94 +22,71 @@ public class Bank implements Serializable {
 		return i;
 	}
 	
-	public int addAccount(String name, double balance, double maxWithLimit )
-	{
+	public int addAccount(String name, double balance, double maxWithLimit ) {
 		SavingsAccount acc=new SavingsAccount(name, balance, maxWithLimit);
 		return this.addAccount(acc);
 	}
 	
-	public int addAccount(String name, double balance, String tradeLicense) throws Exception
-	{
+	public int addAccount(String name, double balance, String tradeLicense) throws Exception {
 		CurrentAccount acc = new CurrentAccount(name, balance,tradeLicense);
 		return this.addAccount(acc);
 	}
 	
-	public int addAccount(String name, String  institutionName, double balance, double min_balance)
-	{
+	public int addAccount(String name, String  institutionName, double balance, double min_balance){
 		StudentAccount acc= new StudentAccount(name,balance,institutionName);
 		return this.addAccount(acc);
 	}
 	
-	public BankAccount findAccount(String aacountNum)
-	{
+	public BankAccount findAccount(String aacountNum) {
 		int i;
-		for(i=0;i<100;i++)
-		{
-			if(getAccounts()[i]==null)
-			{
+		for(i=0;i<100;i++) {
+			if(getAccounts()[i]==null) {
 				break;
 			}
-			if(getAccounts()[i].acc_num.equals(aacountNum))
-			{
+			if(getAccounts()[i].acc_num.equals(aacountNum)) {
 				return getAccounts()[i];
 			}
 		}
 		return null;
 	}
 	
-	public void deposit(String aacountNum, double amt) throws InvalidAmount,AccNotFound
-	{
-		if(amt<0)
-		{
+	public void deposit(String aacountNum, double amt) throws InvalidAmount,AccNotFound {
+		if(amt<0) {
 			throw new InvalidAmount("Invalid Deposit amount");
 		}
 		BankAccount temp=findAccount(aacountNum);
-		if(temp==null)
-		{
+		if(temp==null) {
 			throw new AccNotFound("Account Not Found");
 		}
-		if(temp!=null)
-		{
+		else {
 			temp.deposit(amt);
 		}
 	}
 	
 	
-	public void withdraw(String aacountNum, double amt) throws MaxBalance,AccNotFound, MaxWithdraw, InvalidAmount
-	{
+	public void withdraw(String aacountNum, double amt) throws MaxBalance,AccNotFound, MaxWithdraw, InvalidAmount {
 		BankAccount temp=findAccount(aacountNum);
-		
-		if(temp==null)
-		{
+		if(temp==null) {
 			throw new AccNotFound("Account Not Found");
 		}
-		if(amt<=0)
-		{
+		else {
+			temp.withdraw(amt);
+		}
+		if(amt<=0) {
 			throw new InvalidAmount("Invalid Amount");
 		}
-
-		if(amt>temp.getBalance())
-		{
+		if(amt>temp.getBalance()) {
 			throw new MaxBalance("Insufficient Balance");
-		}
-		if(temp!=null)
-		{
-			temp.withdraw(amt);
 		}
 	}
 	
-	public DefaultListModel<String> display()
-	{
+	public DefaultListModel<String> display() {
 		DefaultListModel<String> list=new DefaultListModel<String>();
 		int i;
-	
-		for(i=0;i<100;i++)
-		{
-			if(getAccounts()[i]==null)
-			{
+		for(i=0;i<100;i++) {
+			if(getAccounts()[i]==null) {
 				break;
 			}
-			
 			list.addElement(getAccounts()[i].toString());
 		}
 		return list;

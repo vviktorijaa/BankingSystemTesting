@@ -1,2 +1,5 @@
-package LogicCoverage;public class BankLogicCov {
+package LogicCoverage;
+
+public class BankLogicCov {
+
 }

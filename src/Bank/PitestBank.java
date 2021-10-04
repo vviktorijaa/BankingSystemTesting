@@ -3,8 +3,8 @@ package Bank;
 import Exceptions.AccNotFound;
 import Exceptions.InvalidAmount;
 import Exceptions.MaxBalance;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 
 import static org.junit.Assert.*;
 
@@ -12,13 +12,14 @@ public class PitestBank {
 
     private Bank bank;
 
-    @BeforeEach
+    @Before
     public void setup() {
         bank = new Bank();
     }
 
     @Test
     public void test1(){
+        Bank bank = new Bank();
         BankAccount [] b = new  BankAccount[1];
         for(int i=0; i<b.length; i++){
             bank.setAccounts(b);
@@ -30,6 +31,7 @@ public class PitestBank {
 
     @Test
     public void testDeposit(){
+        Bank bank = new Bank();
         assertThrows(InvalidAmount.class, () -> {
             bank.deposit("accountNum", -1);
         });
@@ -37,6 +39,7 @@ public class PitestBank {
 
     @Test
     public void testDeposit1(){
+        Bank bank = new Bank();
         assertThrows(AccNotFound.class, () -> {
             bank.deposit("accountNum", 0);
         });
@@ -73,8 +76,9 @@ public class PitestBank {
 
     @Test
     public void testMaxBalanceExceptionClass() throws Exception {
+        Bank bank = new Bank();
         for(int i=0; i<100; i++){
-            bank.addAccount("AccountName", 50000, 100);
+            bank.addAccount("AccountName", 50000, 150000);
         }
         assertThrows(MaxBalance.class, () ->{
             bank.withdraw(bank.getAccounts()[1].acc_num, 100000);

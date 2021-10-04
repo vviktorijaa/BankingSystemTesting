@@ -5,7 +5,7 @@ import Exceptions.MaxWithdraw;
 public class SavingsAccount extends BankAccount {
 
 	private static final long serialVersionUID = 1L;
-	float rate= .05f;
+	float rate = .05f;
 	double maxWithLimit;
 	
 	public SavingsAccount(String name, double balance,double maxWithLimit) {
@@ -13,24 +13,18 @@ public class SavingsAccount extends BankAccount {
 		this.maxWithLimit= maxWithLimit;
 	}
 	
-	public double getNetBalance()
-	{
+	public double getNetBalance() {
 		double NetBalance= getBalance()+(getBalance()*rate);
 		return NetBalance;
 	}
 	
-	public double withdraw(double amount) throws MaxWithdraw, MaxBalance
-	{
-		if(amount<maxWithLimit)
-		{
+	public double withdraw(double amount) throws MaxWithdraw, MaxBalance {
+		if(amount<maxWithLimit) {
 			super.withdraw(amount);
-			
 		}
-		else
-		{
+		else {
 			throw new MaxWithdraw("Maximum Withdraw Limit Exceed");
 		}
-
         return amount;
     }
 }

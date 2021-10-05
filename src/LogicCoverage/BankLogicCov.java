@@ -8,6 +8,7 @@ import Exceptions.MaxWithdraw;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class BankLogicCov {
 
@@ -25,12 +26,13 @@ public class BankLogicCov {
 
     @Test
     public void testAddAccount2(){   //getAccounts()[i] != null
-        int firstAcc = b.addAccount("AccName", 1500, 10000);
-        int secondAcc = b.addAccount("AccName", 1500, 10000);
-        assertEquals(1, secondAcc);
+        for(int i=0; i<100; i++){
+            b.addAccount("SavingsAccount", 1500, 500);
+        }
+        assertFalse(b.getAccounts()[99] == null);
     }
 
-    @Test
+    @Test   //getAccounts()[i]==null -> T && getAccounts()[i].acc_num.equals(aacountNum) -> F
     public void testFindAccount() {   //getAccounts()[i] == null -> T && getAccounts()[i].acc_num.equals(aacountNum) -> F
         assertNull(b.findAccount("5678"));
     }
@@ -42,7 +44,15 @@ public class BankLogicCov {
     }
 
     @Test
-    public void testDeposit() throws Exception {   //amt < 0
+    public void testFindAccount3() {   //getAccounts()[i] == null -> F && getAccounts()[i].acc_num.equals(aacountNum) -> F
+        for(int i=0; i<100; i++){
+            b.addAccount("AccountName", "InstitutionName", 20000, 1500);
+        }
+        assertNull(b.findAccount("19384"));
+    }
+
+    @Test
+    public void testDeposit() throws Exception {   //amt < 0 -> T
         b.addAccount("AccountName", 10000, "tradeLicense");
         assertThrows(InvalidAmount.class, () -> {
             b.deposit(b.getAccounts()[0].getAccNumber(), -100);
@@ -50,10 +60,18 @@ public class BankLogicCov {
     }
 
     @Test
-    public void testDeposit2() throws Exception {   //temp == null
+    public void testDeposit2() throws Exception {   //amt < 0 -> F && temp == null -> T
         b.addAccount("AccName", 35000, 10000);
         assertThrows(AccNotFound.class, () -> {
-            b.deposit("1234", 5000);
+            b.deposit("12345", 5000);
+        });
+    }
+
+    @Test
+    public void testDeposit3() {   //amt < 0 -> F && temp == null -> F
+        b.addAccount("AccName", 1000, 10000);
+        assertDoesNotThrow(() -> {
+            b.deposit(b.getAccounts()[0].getAccNumber(), 500);
         });
     }
 
@@ -66,19 +84,25 @@ public class BankLogicCov {
     }
 
     @Test
-    public void testWithdraw2() throws InvalidAmount, MaxBalance, AccNotFound, MaxWithdraw {   //amt <= 0
-        b.addAccount("AccountOne", 5000, 20000);
+    public void testWithdraw2() throws InvalidAmount, MaxBalance, AccNotFound, MaxWithdraw {   //temp == null -> F && amt <= 0 -> T && amt > temp.getBalance() -> F
+        b.addAccount("AccountTwo", 7500, 15000);
         assertThrows(InvalidAmount.class, () ->{
             b.withdraw(b.getAccounts()[0].getAccNumber(), 0);
         });
     }
 
     @Test
-    public void testWithdraw3() throws InvalidAmount, MaxBalance, AccNotFound, MaxWithdraw {   //amt > temp.getBalance()
-        b.addAccount("AccountTwo", 7500, 15000);
+    public void testWithdraw3() throws InvalidAmount, MaxBalance, AccNotFound, MaxWithdraw {   //temp == null -> F && amt <= 0 -> F && amt > temp.getBalance() -> T
+        b.addAccount("AccountTwo", 500, 10000);
         assertThrows(MaxBalance.class, () ->{
-            b.withdraw(b.getAccounts()[0].getAccNumber(), 10000);
+            b.withdraw(b.getAccounts()[0].getAccNumber(), 1000);
         });
+    }
+
+    @Test
+    public void testWithdraw4() throws InvalidAmount, MaxBalance, AccNotFound, MaxWithdraw {   //temp == null -> F && amt <= 0 -> F && amt > temp.getBalance() -> F
+        b.addAccount("AccountTwo", 2500, 1000);
+        assertNull(b.withdraw(b.getAccounts()[0].getAccNumber(), 300));
     }
 
     @Test

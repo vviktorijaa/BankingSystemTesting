@@ -2,6 +2,8 @@ package LogicCoverage;
 
 import org.junit.Test;
 import Bank.CurrentAccount;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CurrentAccountLogicCov {
@@ -14,7 +16,9 @@ public class CurrentAccountLogicCov {
     }
 
     @Test
-    public void test2() throws Exception {
-        //assert does not throw
+    public void test2() {
+        assertDoesNotThrow(() -> {
+            CurrentAccount ca = new CurrentAccount("AccountName", 5000, "tradeLicense");
+        });
     }
 }

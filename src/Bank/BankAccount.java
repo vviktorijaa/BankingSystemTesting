@@ -57,13 +57,11 @@ public class BankAccount implements Serializable {
 	
 	public double withdraw(double amount) throws MaxWithdraw, MaxBalance
 	{
-		if((balance-amount)>=min_balance && amount<balance)
-		{
+		if((balance-amount)>=min_balance && amount<balance) {
 			balance-=amount;
 			return balance;
 		}
-		else
-		{
+		else {
 			throw new MaxBalance("Insufficient Balance");
 		}
 	}

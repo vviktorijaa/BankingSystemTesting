@@ -3,10 +3,13 @@ package Bank;
 import Exceptions.AccNotFound;
 import Exceptions.InvalidAmount;
 import Exceptions.MaxBalance;
+import Exceptions.MaxWithdraw;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
 
 import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class PitestBank {
 
@@ -18,93 +21,100 @@ public class PitestBank {
     }
 
     @Test
-    public void test1(){
-        Bank bank = new Bank();
-        BankAccount [] b = new  BankAccount[1];
-        for(int i=0; i<b.length; i++){
-            bank.setAccounts(b);
+    public void test1() throws Exception {
+        for(int i=0; i<99; i++){
+            bank.addAccount("SavingsAccount", 15000, 10000);
         }
-        assertThrows(AccNotFound.class, () ->{
-            bank.withdraw("accountNum", 0);
+        assertEquals(99, bank.addAccount("CurrentAccount", 5000, "tradeLicense"));
+    }
+
+    @Test
+    public void test2() {
+        int firstAcc = bank.addAccount("SavingsAccount", 15000, 1000);
+        int secondAcc = bank.addAccount("SavingsAccount", 23000, 2000);
+        assertTrue(secondAcc == 1);
+    }
+
+    @Test
+    public void test3() {
+        int firstAcc = bank.addAccount("StudentAccount", "InstitutionName", 5000, 100);
+        int secondAcc = bank.addAccount("StudentAccount2", "InstitutionName2", 10000, 100);
+        assertEquals(1, secondAcc);
+    }
+
+    @Test
+    public void test4() {
+        for(int i=0; i<100; i++){
+            bank.addAccount("StudentAccount", "Institution", 10000, 500);
+        }
+        assertEquals(bank.getAccounts()[0].toString(), bank.findAccount(bank.getAccounts()[0].getAccNumber()).toString());
+    }
+
+    @Test
+    public void test5() {
+        assertNull(bank.findAccount("account"));
+    }
+
+    @Test
+    public void test6() {
+        bank.addAccount("AccountName", 7500, 10000);
+        bank.setAccounts(bank.getAccounts());
+        assertThrows(AccNotFound.class, () -> {
+            bank.deposit("1234", 0);
         });
     }
 
     @Test
-    public void testDeposit(){
-        Bank bank = new Bank();
+    public void test7() throws InvalidAmount, MaxBalance, AccNotFound, MaxWithdraw {
+        assertThrows(AccNotFound.class, () -> {
+            bank.withdraw("accountNum", 1000);
+        });
+    }
+
+    @Test
+    public void test8() throws InvalidAmount, MaxBalance, AccNotFound, MaxWithdraw {
+        bank.addAccount("SavingsAccount", 5000, 5000);
         assertThrows(InvalidAmount.class, () -> {
-            bank.deposit("accountNum", -1);
+            bank.withdraw(bank.getAccounts()[0].getAccNumber(), 0);
         });
     }
 
     @Test
-    public void testDeposit1(){
-        Bank bank = new Bank();
-        assertThrows(AccNotFound.class, () -> {
-            bank.deposit("accountNum", 0);
-        });
+    public void test9() throws Exception {
+        assertTrue(bank.display().size() == 0);
     }
 
     @Test
-    public void testAddAccount(){
-        assertEquals(null, bank.findAccount("Account"));
-    }
-
-    @Test
-    public void testAddBankAccountAndWithdraw() {
-        BankAccount ba = new BankAccount("BankAccount", 1500, 50);
-        bank.addAccount(ba);
-        assertThrows(AccNotFound.class, () -> {
-            bank.withdraw("BankAccount", 0);
-        });
-    }
-
-    @Test
-    public void testDisplay() {
-        assertFalse(bank.display() == null);    //line 110 in Bank class
-    }
-
-    @Test
-    public void testInvalidAmountExceptionClass() {
+    public void test10() throws Exception {
         for(int i=0; i<100; i++){
-            bank.addAccount("Acc", "Institution", 5000, 1000);
+            bank.addAccount("CurrentAccount", 7400, "83346");
         }
-        assertThrows(InvalidAmount.class, () ->{
-            bank.withdraw(bank.getAccounts()[1].acc_num, 0);
+        assertNotEquals(0, bank.display().size());
+    }
+
+    @Test
+    public void test11() throws Exception {
+        for(int i=0; i<100; i++){
+            bank.addAccount("CurrentAccount", 10000, "19302");
+        }
+        assertDoesNotThrow(()->{
+            bank.withdraw(bank.getAccounts()[0].getAccNumber(), 5000);
         });
     }
 
     @Test
-    public void testMaxBalanceExceptionClass() throws Exception {
-        Bank bank = new Bank();
-        for(int i=0; i<100; i++){
-            bank.addAccount("AccountName", 50000, 150000);
-        }
-        assertThrows(MaxBalance.class, () ->{
-            bank.withdraw(bank.getAccounts()[1].acc_num, 100000);
+    public void test12() throws Exception {
+        bank.addAccount("SavingsAccount", 10000, 10000);
+        assertDoesNotThrow(()->{
+            bank.deposit(bank.getAccounts()[0].getAccNumber(), 500);
         });
     }
 
     @Test
-    public void testMaxBalanceExceptionClass1() throws Exception {
-        for(int i=0; i<100; i++){
-            bank.addAccount("AccountName", 50000, "tradLicense");
-        }
-        bank.withdraw(bank.getAccounts()[1].acc_num, 1000);
-    }
-
-    @Test
-    public void testDeposit11() throws Exception { //replaced int return with 0 for Bank/Bank::addAccount → KILLED, bidejki secondAcc e so index 1 vo nizata kreirani akaunti
-        int firstAcc = bank.addAccount("AccountName", 50000, "tradLicense");
-        int secondAcc = bank.addAccount("AccountName", 50000, "tradLicense");
-        assertTrue(secondAcc != 0);
-    }
-
-    @Test
-    public void testDeposit2() throws InvalidAmount, AccNotFound {
-        for(int i=0; i<100; i++){
-            bank.addAccount("AccountName", 50000, 100);
-        }
-        //assertTrue(bank.deposit(bank.getAccounts()[1].acc_num, 1000));
+    public void test13() throws Exception {
+        bank.addAccount("SavingsAccount", 4000, 500);
+        assertThrows(InvalidAmount.class, ()-> {
+            bank.deposit(bank.getAccounts()[0].getAccNumber(), -3000);
+        });
     }
 }

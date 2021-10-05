@@ -19,12 +19,6 @@ public class PitestBankAccount {
     public void testAccNumber(){ //Replaced double multiplication with division → KILLED //Replaced integer addition with subtraction → KILLED
         BankAccount ba = new BankAccount("BankAccount", 1000, 500);
         assertTrue(Integer.parseInt(ba.getAccNumber()) > 11000);
-        /*
-        Math.random / 89999 = kje se dobie broj mnogu blizok do 0
-        + 10 000 na ovoj rezultat = 10 000,0000000...01933 (primer)
-        zatoa, expected e > 11 000, mutantot tuka se nishti (bidejki
-        kje e broj mnogu blizok do 10 000)
-         */
     }
 
     @Test

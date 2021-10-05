@@ -6,6 +6,7 @@ import Exceptions.AccNotFound;
 import Exceptions.InvalidAmount;
 import Exceptions.MaxBalance;
 import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class BankGraphCov {
 
@@ -18,19 +19,13 @@ public class BankGraphCov {
     }
 
     @Test
-    public void testAddAccount2(){      //[1,2,3,5]
-        Bank b = new Bank();
-
-    }
-
-    @Test
-    public void testFindAccount2(){     //[1,2,3,4,7]
+    public void testFindAccount(){     //[1,2,3,4,7]
         Bank b = new Bank();
         assertNull(b.findAccount("AccNum"));
     }
 
     @Test
-    public void testFindAccount3(){     //[1,2,3,4,5,6]
+    public void testFindAccount2(){     //[1,2,3,4,5,6]
         Bank b = new Bank();
         b.addAccount("Acc", 15000, 3000);
         assertNotNull(b.findAccount(b.getAccounts()[0].getAccNumber()));
@@ -49,7 +44,16 @@ public class BankGraphCov {
     public void testDeposit2(){      //[1,2,3,6]
         Bank b = new Bank();
         assertThrows(AccNotFound.class, () -> {
-            b.deposit("6789", 1000);
+            b.deposit("67890", 1000);
+        });
+    }
+
+    @Test
+    public void testDeposit3(){      //[1,2,3,4]
+        Bank b = new Bank();
+        b.addAccount("SavingsAccount", 1500, 1000);
+        assertDoesNotThrow(() -> {
+            b.deposit(b.getAccounts()[0].getAccNumber(), 1000);
         });
     }
 
@@ -80,8 +84,9 @@ public class BankGraphCov {
     }
 
     @Test
-    public void testDisplay2(){      //[1,2,3,5]
+    public void testDisplay(){      //[1,2,3,5]
         Bank b = new Bank();
+        b.addAccount(null);
         assertEquals(0, b.display().getSize());
     }
 }

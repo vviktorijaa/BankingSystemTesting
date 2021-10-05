@@ -16,7 +16,7 @@ public class PitestBankAccount {
     }
 
     @Test
-    public void testAccNumber(){ //Replaced double multiplication with division → KILLED //Replaced integer addition with subtraction → KILLED
+    public void testAccNumber(){
         BankAccount ba = new BankAccount("BankAccount", 1000, 500);
         assertTrue(Integer.parseInt(ba.getAccNumber()) > 11000);
         /*
@@ -55,13 +55,13 @@ public class PitestBankAccount {
     }
 
     @Test
-    public void testWithdrawMethod() throws MaxBalance, MaxWithdraw {   //ОК
+    public void testWithdrawMethod() throws MaxBalance, MaxWithdraw {
         BankAccount ba = new BankAccount("BankAccount", 1500, 0);
         assertTrue(ba.withdraw(500) == 1000);
     }
 
     @Test
-    public void testWithdrawMethodException() {  //ОК
+    public void testWithdrawMethodException() {
         BankAccount ba = new BankAccount("BankAccount", 500, 0);
         assertThrows(MaxBalance.class, () -> {
             ba.withdraw(1500);
@@ -69,13 +69,13 @@ public class PitestBankAccount {
     }
 
     @Test
-    public void testWithdrawNarrowCase() throws MaxBalance, MaxWithdraw {   //amount<min_balance mutant killed
+    public void testWithdrawNarrowCase() throws MaxBalance, MaxWithdraw {
         BankAccount ba = new BankAccount("BankAccount", 1500, 100);
         assertEquals(ba.withdraw(1400), 100, 0);
     }
 
     @Test
-    public void testWithdrawMethod1() { //Replaced double subtraction with addition → KILLED
+    public void testWithdrawMethod1() {
         BankAccount ba = new BankAccount("BankAccount", 200, 200);
         assertThrows(MaxBalance.class, () -> {
             ba.withdraw(30);
@@ -83,7 +83,7 @@ public class PitestBankAccount {
     }
 
     @Test
-    public void testWithdrawMethod2() { //changed conditional boundary killed
+    public void testWithdrawMethod2() {
         BankAccount ba = new BankAccount("BankAccount", 200, 0);
         assertThrows(MaxBalance.class, () -> {
             ba.withdraw(200);
@@ -91,7 +91,7 @@ public class PitestBankAccount {
     }
 
     @Test
-    public void testToStringMethod() {   //ОК
+    public void testToStringMethod() {
         BankAccount ba = new BankAccount("BankAccount", 200, 0);
         assertEquals(ba.toString(), "Name: BankAccount, Id: " + ba.getAccNumber() + ", Balance: 200.0, Type: " + BankAccount.class);
     }

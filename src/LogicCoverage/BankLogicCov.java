@@ -77,8 +77,8 @@ public class BankLogicCov {
 
     @Test
     public void testWithdraw() throws InvalidAmount, MaxBalance, AccNotFound, MaxWithdraw {   //temp == null
-       b.addAccount("FirstAccount", 15000, 10000);
-       assertThrows(AccNotFound.class, () ->{
+        b.addAccount("FirstAccount", 15000, 10000);
+        assertThrows(AccNotFound.class, () ->{
             b.withdraw("accNum", 1000);
         });
     }
@@ -107,7 +107,7 @@ public class BankLogicCov {
 
     @Test
     public void testDisplay() {
-       assertEquals(0, b.display().size());
+        assertEquals(0, b.display().size());
     }
 
     @Test

@@ -6,7 +6,6 @@ import Exceptions.AccNotFound;
 import Exceptions.InvalidAmount;
 import Exceptions.MaxBalance;
 import org.junit.Test;
-
 import static org.junit.Assert.*;
 
 public class BankISP {

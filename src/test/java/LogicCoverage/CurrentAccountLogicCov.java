@@ -2,7 +2,6 @@ package LogicCoverage;
 
 import org.junit.Test;
 import Bank.CurrentAccount;
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 

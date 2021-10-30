@@ -1,5 +1,6 @@
-package Bank;
+package Pitest;
 
+import Bank.SavingsAccount;
 import Exceptions.MaxBalance;
 import Exceptions.MaxWithdraw;
 import org.junit.Test;

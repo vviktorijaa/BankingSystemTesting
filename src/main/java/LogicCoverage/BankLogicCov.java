@@ -1,6 +1,7 @@
 package LogicCoverage;
 
 import Bank.Bank;
+import Bank.BankAccount;
 import Exceptions.AccNotFound;
 import Exceptions.InvalidAmount;
 import Exceptions.MaxBalance;
@@ -102,7 +103,9 @@ public class BankLogicCov {
     @Test
     public void testWithdraw4() throws InvalidAmount, MaxBalance, AccNotFound, MaxWithdraw {   //temp == null -> F && amt <= 0 -> F && amt > temp.getBalance() -> F
         b.addAccount("AccountTwo", 2500, 1000);
-        assertNull(b.withdraw(b.getAccounts()[0].getAccNumber(), 300));
+        b.withdraw(b.getAccounts()[0].getAccNumber(), 300);
+        BankAccount foundAccount = b.findAccount(b.getAccounts()[0].getAccNumber());
+        assertEquals(foundAccount.getBalance(), 2200, 0);
     }
 
     @Test

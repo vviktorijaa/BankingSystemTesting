@@ -38,24 +38,24 @@ public class Bank implements Serializable {
 		return this.addAccount(acc);
 	}
 	
-	public BankAccount findAccount(String aacountNum) {
+	public BankAccount findAccount(String accountNum) {
 		int i;
 		for(i=0;i<100;i++) {
 			if(getAccounts()[i]==null) {
 				break;
 			}
-			if(getAccounts()[i].acc_num.equals(aacountNum)) {
+			if(getAccounts()[i].acc_num.equals(accountNum)) {
 				return getAccounts()[i];
 			}
 		}
 		return null;
 	}
 	
-	public void deposit(String aacountNum, double amt) throws InvalidAmount,AccNotFound {
+	public void deposit(String accountNum, double amt) throws InvalidAmount, AccNotFound {
 		if(amt<0) {
 			throw new InvalidAmount("Invalid Deposit amount");
 		}
-		BankAccount temp=findAccount(aacountNum);
+		BankAccount temp=findAccount(accountNum);
 		if(temp==null) {
 			throw new AccNotFound("Account Not Found");
 		}
@@ -65,8 +65,8 @@ public class Bank implements Serializable {
 	}
 	
 	
-	public Executable withdraw(String aacountNum, double amt) throws MaxBalance,AccNotFound, MaxWithdraw, InvalidAmount {
-		BankAccount temp=findAccount(aacountNum);
+	public void withdraw(String accountNum, double amt) throws MaxBalance,AccNotFound, MaxWithdraw, InvalidAmount {
+		BankAccount temp=findAccount(accountNum);
 		if(temp==null) {
 			throw new AccNotFound("Account Not Found");
 		}
@@ -79,7 +79,6 @@ public class Bank implements Serializable {
 		if(amt>temp.getBalance()) {
 			throw new MaxBalance("Insufficient Balance");
 		}
-		return null;
 	}
 	
 	public DefaultListModel<String> display() {

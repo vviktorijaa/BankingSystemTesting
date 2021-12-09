@@ -82,7 +82,6 @@ public class Login extends JFrame{
 				if((user.equals("admin")&&(pass.equals("admin")))) {
 					JOptionPane.showMessageDialog(frame.getComponent(0), "Login Successfully");
 					frame.setVisible(false);
-							
 					GUIForm.menu.setVisible(true);
 				}
 				else {

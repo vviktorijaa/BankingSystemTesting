@@ -32,7 +32,7 @@ public class BankGraphCov {
     }
 
     @Test
-    public void testDeposit() throws Exception {      //[1,2,5]
+    public void testDeposit() throws Exception {      //[1,4]
         Bank b = new Bank();
         b.addAccount("AccountName", 6500, "tradeLicense");
         assertThrows(InvalidAmount.class, () -> {
@@ -41,7 +41,7 @@ public class BankGraphCov {
     }
 
     @Test
-    public void testDeposit2(){      //[1,2,3,6]
+    public void testDeposit2(){      //[1,2,5]
         Bank b = new Bank();
         assertThrows(AccNotFound.class, () -> {
             b.deposit("67890", 1000);
@@ -49,7 +49,7 @@ public class BankGraphCov {
     }
 
     @Test
-    public void testDeposit3(){      //[1,2,3,4]
+    public void testDeposit3(){      //[1,2,3]
         Bank b = new Bank();
         b.addAccount("SavingsAccount", 1500, 1000);
         assertDoesNotThrow(() -> {
@@ -58,7 +58,7 @@ public class BankGraphCov {
     }
 
     @Test
-    public void testWithdraw(){     //[1,2,6]
+    public void testWithdraw(){     //[1,2,5]
         Bank b = new Bank();
         assertThrows(AccNotFound.class, () -> {
             b.withdraw("accNum", 500);
@@ -66,7 +66,7 @@ public class BankGraphCov {
     }
 
     @Test
-    public void testWithdraw2(){     //[1,2,3,4,7]
+    public void testWithdraw2(){     //[1,2,3,6]
         Bank b = new Bank();
         b.addAccount("Acc", 4000, 10000);
         assertThrows(InvalidAmount.class, () -> {
@@ -75,7 +75,7 @@ public class BankGraphCov {
     }
 
     @Test
-    public void testWithdraw3(){     //[1,2,3,4,5]
+    public void testWithdraw3(){     //[1,2,3,4]
         Bank b = new Bank();
         b.addAccount("AccName", "HighSchool", 10000, 500);
         assertThrows(MaxBalance.class, () -> {

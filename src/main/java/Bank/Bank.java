@@ -1,11 +1,11 @@
 package Bank;
+
 import java.io.Serializable;
 import javax.swing.DefaultListModel;
 import Exceptions.AccNotFound;
 import Exceptions.InvalidAmount;
 import Exceptions.MaxBalance;
 import Exceptions.MaxWithdraw;
-import org.junit.jupiter.api.function.Executable;
 
 public class Bank implements Serializable {
 

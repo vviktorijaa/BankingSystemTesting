@@ -12,7 +12,7 @@ public class SavingsAccountGraphCov {
     //PPC
 
     @Test
-    public void testWithdraw(){     //[1,2,5]
+    public void testWithdraw(){     //[1,4]
         SavingsAccount sa = new SavingsAccount("Acc", 20000, 10000);
         assertThrows(MaxWithdraw.class, () -> {
             sa.withdraw(15000);
@@ -20,7 +20,7 @@ public class SavingsAccountGraphCov {
     }
 
     @Test
-    public void testWithdraw2() throws MaxBalance, MaxWithdraw {    //[1,2,3,4]
+    public void testWithdraw2() throws MaxBalance, MaxWithdraw {    //[1,3]
         SavingsAccount sa = new SavingsAccount("Acc", 5000, 10000);
         sa.withdraw(2000);
         assertEquals(3000, sa.getBalance(), 0);

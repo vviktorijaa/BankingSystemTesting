@@ -33,19 +33,19 @@ public class BankLogicCov {
         assertFalse(b.getAccounts()[99] == null);
     }
 
-    @Test   //getAccounts()[i]==null -> T && getAccounts()[i].acc_num.equals(aacountNum) -> F
+    @Test   //getAccounts()[i]==null -> T && getAccounts()[i].acc_num.equals(accountNum) -> F
     public void testFindAccount() {   //getAccounts()[i] == null -> T && getAccounts()[i].acc_num.equals(aacountNum) -> F
         assertNull(b.findAccount("5678"));
     }
 
     @Test
-    public void testFindAccount2() {   //getAccounts()[i] == null -> F && getAccounts()[i].acc_num.equals(aacountNum) -> T
+    public void testFindAccount2() {   //getAccounts()[i] == null -> F && getAccounts()[i].acc_num.equals(accountNum) -> T
         b.addAccount("AccountName", "InstitutionName", 20000, 1500);
         assertNotNull(b.findAccount(b.getAccounts()[0].getAccNumber()));
     }
 
     @Test
-    public void testFindAccount3() {   //getAccounts()[i] == null -> F && getAccounts()[i].acc_num.equals(aacountNum) -> F
+    public void testFindAccount3() {   //getAccounts()[i] == null -> F && getAccounts()[i].acc_num.equals(accountNum) -> F
         for(int i=0; i<100; i++){
             b.addAccount("AccountName", "InstitutionName", 20000, 1500);
         }
@@ -108,13 +108,13 @@ public class BankLogicCov {
         assertEquals(foundAccount.getBalance(), 2200, 0);
     }
 
-    @Test
+    @Test   //getAccounts()[i]==null
     public void testDisplay() {
         assertEquals(0, b.display().size());
     }
 
     @Test
-    public void testDisplay2() {
+    public void testDisplay2() {    //getAccounts()[i]!=null
         b.addAccount("Account", 8000, 20000);
         assertTrue(b.display().size() == 1);
     }

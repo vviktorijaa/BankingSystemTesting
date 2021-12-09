@@ -27,9 +27,9 @@ public class WithdrawAcc extends JFrame implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-
+	public JTextField textField;
+	public JTextField textField_1;
+	public JButton btnWithdraw;
 
 	/**
 	 * Create the frame.
@@ -69,67 +69,57 @@ public class WithdrawAcc extends JFrame implements Serializable {
 		lblAmount.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblAmount.setBounds(10, 150, 96, 14);
 		contentPane.add(lblAmount);
-		
-		JButton btnDeposit = new JButton("Withdraw");
-		btnDeposit.addActionListener(new ActionListener() {
+
+		btnWithdraw = new JButton("Withdraw");
+		btnWithdraw.addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent e) {
-			
 				String aacountNum;
 				double amt;
 				aacountNum=textField.getText();
 				amt=Double.parseDouble(textField_1.getText());
 					try {
 						int a=JOptionPane.showConfirmDialog(getComponent(0), "Confirm?");
-						if(a==0)
-						{
-							
+						if(a==0) {
 							FileIO.bank.withdraw(aacountNum, amt);
 							JOptionPane.showMessageDialog(getComponent(0),"Withdraw Successful");
 							dispose();
 						}
-						else
-						{
+						else {
 						textField.setText(null);
 						textField_1.setText(null);
-						
 						}
-						
-					} catch (MaxBalance e1) {
+					}
+					catch (MaxBalance e1) {
 						JOptionPane.showMessageDialog(getComponent(0), "Insufficient Balance");
 						JOptionPane.showMessageDialog(getComponent(0),"Failed");
 						textField.setText(null);
 						textField_1.setText(null);
-				
-					} catch (AccNotFound e1) {
+					}
+					catch (AccNotFound e1) {
 						JOptionPane.showMessageDialog(getComponent(0), "Sorry! Account Not Found");
 						JOptionPane.showMessageDialog(getComponent(0),"Failed");
 						textField.setText(null);
 						textField_1.setText(null);
-					
-					} catch (MaxWithdraw e1) {
+					}
+					catch (MaxWithdraw e1) {
 						JOptionPane.showMessageDialog(getComponent(0), "Maximum Withdraw Limit Exceed");
 						JOptionPane.showMessageDialog(getComponent(0),"Failed");
 						textField.setText(null);
 						textField_1.setText(null);
-						
-					} catch (InvalidAmount e1) {
+					}
+					catch (InvalidAmount e1) {
 						JOptionPane.showMessageDialog(getComponent(0), "Invalid Amount");
 						JOptionPane.showMessageDialog(getComponent(0),"Failed");
 						textField.setText(null);
 						textField_1.setText(null);
 					}
-				
-				
 					textField.setText(null);
 					textField_1.setText(null);
-				
-				
-				
-
 			}
 		});
-		btnDeposit.setBounds(73, 212, 89, 23);
-		contentPane.add(btnDeposit);
+		btnWithdraw.setBounds(73, 212, 89, 23);
+		contentPane.add(btnWithdraw);
 		
 		JButton btnReset = new JButton("Reset");
 		btnReset.setBounds(243, 212, 89, 23);

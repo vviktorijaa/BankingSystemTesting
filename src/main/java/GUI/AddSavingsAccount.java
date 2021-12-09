@@ -20,9 +20,11 @@ public class AddSavingsAccount extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	public JTextField textField; //name
+	public JTextField textField_1; //balance
+	public JTextField textField_2; //maxWithLimit
+	public JButton btnAdd;
+	public int ch;
 
 	/**
 	 * Create the frame.
@@ -72,54 +74,43 @@ public class AddSavingsAccount extends JFrame {
 		textField_2.setBounds(144, 160, 254, 20);
 		contentPane.add(textField_2);
 		
-		JButton btnAdd = new JButton("Add");
+		btnAdd = new JButton("Add");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-//				FileIO file=new FileIO();
-				//Bank bank =file.Read();
 				String name=textField.getText();
 				double bal=Double.parseDouble(textField_1.getText());
 				double maxw=Double.parseDouble(textField_2.getText());
-				if(bal<2000)
-				{
+				if(bal<2000) {
 					JOptionPane.showMessageDialog(getComponent(0), "Minimum Limit 5000", "Warning", 0);
 					textField.setText(null);
 					textField_1.setText(null);
 					textField_2.setText(null);
 				}
-				else
-				{
-				if(name==null||bal<=0||maxw<=0)
-				{
-					JOptionPane.showMessageDialog(getComponent(0),"Typing Mismatch!! Try Again");
-					textField.setText(null);
-					textField_1.setText(null);
-					textField_2.setText(null);
-				}
-				else
-				{
-				int ch=JOptionPane.showConfirmDialog(getComponent(0), "Confirm?");
-				if(ch==0)
-				{
-					int index = FileIO.bank.addAccount(name, bal, maxw);
-					DisplayList.arr.addElement(FileIO.bank.getAccounts()[index].toString());
-					//file.Write(FileIO.bank);
-					JOptionPane.showMessageDialog(getComponent(0),"Added Successfully");
-					dispose();
-				}
-				else 
-				{
-					JOptionPane.showMessageDialog(getComponent(0),"Failed");
-					textField.setText(null);
-					textField_1.setText(null);
-					textField_2.setText(null);
-				}
-				textField.setText(null);
-				textField_1.setText(null);
-				textField_2.setText(null);
-				
-				}
+				else {
+					if(name==null||bal<=0||maxw<=0) {
+						JOptionPane.showMessageDialog(getComponent(0),"Typing Mismatch!! Try Again");
+						textField.setText(null);
+						textField_1.setText(null);
+						textField_2.setText(null);
+					}
+					else {
+						ch=JOptionPane.showConfirmDialog(getComponent(0), "Confirm?");
+						if(ch==0) {
+							int index = FileIO.bank.addAccount(name, bal, maxw);
+							DisplayList.arr.addElement(FileIO.bank.getAccounts()[index].toString());
+							JOptionPane.showMessageDialog(getComponent(0),"Added Successfully");
+							dispose();
+						}
+						else {
+							JOptionPane.showMessageDialog(getComponent(0),"Failed");
+							textField.setText(null);
+							textField_1.setText(null);
+							textField_2.setText(null);
+						}
+						textField.setText(null);
+						textField_1.setText(null);
+						textField_2.setText(null);
+					}
 				}
 			}
 		});

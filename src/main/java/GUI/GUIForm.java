@@ -13,23 +13,16 @@ public class GUIForm {
 	public static DepositAcc depositacc= new DepositAcc();
 	public static WithdrawAcc withdraw = new WithdrawAcc();
 	
-	public static void UpdateDisplay()
-	{
-		
-		if(displaylist.isVisible())
-		{
+	public static void UpdateDisplay() {
+		if(displaylist.isVisible()) {
 			Point O= displaylist.getLocation();
 			displaylist.dispose();
 			displaylist = new DisplayList();
 			displaylist.setVisible(true);
 			displaylist.setLocation(O);;
 		}
-		
 		else {
 			displaylist = new DisplayList();
 		}
-		
 	}
-	
-	
 }

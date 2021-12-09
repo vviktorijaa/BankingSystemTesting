@@ -18,6 +18,7 @@ public class AddAccount extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	public JButton btnAddCurrentAccount;
 
 	/**
 	 * Create the frame.
@@ -32,7 +33,7 @@ public class AddAccount extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnAddCurrentAccount = new JButton("Add Saving Account");
+		btnAddCurrentAccount = new JButton("Add Saving Account");
 		btnAddCurrentAccount.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!GUIForm.addsavingsaccount.isVisible())

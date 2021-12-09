@@ -25,10 +25,11 @@ public class DepositAcc extends JFrame implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
+	public JTextField textField;
+	public JTextField textField_1;
+	public JButton btnDeposit;
+	public JButton btnReset;
 
-	
 	/**
 	 * Create the frame.
 	 */
@@ -68,7 +69,7 @@ public class DepositAcc extends JFrame implements Serializable {
 		lblAmount.setBounds(0, 150, 111, 14);
 		contentPane.add(lblAmount);
 		
-		JButton btnDeposit = new JButton("Deposit");
+		btnDeposit = new JButton("Deposit");
 		btnDeposit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//FileIO file=new FileIO();
@@ -121,7 +122,7 @@ public class DepositAcc extends JFrame implements Serializable {
 		btnDeposit.setBounds(73, 212, 89, 23);
 		contentPane.add(btnDeposit);
 		
-		JButton btnReset = new JButton("Reset");
+		btnReset = new JButton("Reset");
 		btnReset.setBounds(243, 212, 89, 23);
 		contentPane.add(btnReset);
 		

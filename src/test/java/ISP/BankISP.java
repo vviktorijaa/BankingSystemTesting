@@ -10,21 +10,23 @@ import static org.junit.Assert.*;
 
 public class BankISP {
 
+    //BCC
+
     @Test
-    public void test1() throws Exception { //addAcc - savings, current
+    public void test1() throws Exception { //accountAdded -> T (savings, current acc)
         Bank b = new Bank();
         b.addAccount("SavingsAccount", 2500, 10000);
         assertEquals(1, b.addAccount("CurrentAccount", 6500, "tradeLicense556"));
     }
 
     @Test
-    public void test2(){ //addAcc F OK
+    public void test2(){ //addAcc F
         Bank b = new Bank();
         assertEquals(0, b.addAccount(null));
     }
 
     @Test
-    public void test3(){ //findAcc, addAcc TT OK
+    public void test3(){ //findAcc, addAcc TT
         Bank b = new Bank();
         BankAccount ba = new BankAccount("BankAccount", 4600, 100);
         b.addAccount(ba);

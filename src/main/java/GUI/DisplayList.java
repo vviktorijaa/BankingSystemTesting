@@ -1,11 +1,10 @@
 package GUI;
+
 import javax.swing.DefaultListModel;
 import Data.FileIO;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -22,12 +21,10 @@ public class DisplayList extends JFrame {
 	private static final long serialVersionUID = 1L;
 	static DefaultListModel<String> arr = new DefaultListModel<String>();
 	private JPanel contentPane;
-
 	
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings({ })
 	public DisplayList() {
 		setTitle("Account List");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -53,8 +50,5 @@ public class DisplayList extends JFrame {
 		arr=FileIO.bank.display();
 		JList<String> list = new JList<String>(arr);
 		scrollPane.setViewportView(list);
-		
-	
-
 	}
 }

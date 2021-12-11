@@ -10,11 +10,11 @@ public class SavingsAccount extends BankAccount {
 	
 	public SavingsAccount(String name, double balance,double maxWithLimit) {
 		super(name, balance, 2000);
-		this.maxWithLimit= maxWithLimit;
+		this.maxWithLimit = maxWithLimit;
 	}
 	
 	public double getNetBalance() {
-		double NetBalance= getBalance()+(getBalance()*rate);
+		double NetBalance = getBalance()+(getBalance()*rate);
 		return NetBalance;
 	}
 	

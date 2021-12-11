@@ -29,6 +29,7 @@ public class DepositAcc extends JFrame implements Serializable {
 	public JTextField textField_1;
 	public JButton btnDeposit;
 	public JButton btnReset;
+	public int a;
 
 	/**
 	 * Create the frame.
@@ -72,51 +73,34 @@ public class DepositAcc extends JFrame implements Serializable {
 		btnDeposit = new JButton("Deposit");
 		btnDeposit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//FileIO file=new FileIO();
-				//Bank bank =file.Read();
-				String aacountNum;
+				String accountNum;
 				double amt;
-				aacountNum=textField.getText();
+				accountNum=textField.getText();
 				amt=Double.parseDouble(textField_1.getText());
-				int a=JOptionPane.showConfirmDialog(getComponent(0), "Confirm?");
-				if(a==0)
-				{
-				try {
-					
-						
-						FileIO.bank.deposit(aacountNum, amt);
+				a=JOptionPane.showConfirmDialog(getComponent(0), "Confirm?");
+				if(a==0){
+					try {
+						FileIO.bank.deposit(accountNum, amt);
 						JOptionPane.showMessageDialog(getComponent(0),"Deposit Successful");
 						dispose();
-					
 						textField.setText(null);
 						textField_1.setText(null);
-					
-				} 
-				catch (InvalidAmount e1) {
-					JOptionPane.showMessageDialog(getComponent(0), "Sorry! Deposit Amount is Invalid");
-					
-				} catch (AccNotFound e1) {
-					JOptionPane.showMessageDialog(getComponent(0), "Sorry! Account is Not Found");
-					
+					}
+					catch(InvalidAmount e1) {
+						JOptionPane.showMessageDialog(getComponent(0), "Sorry! Deposit Amount is Invalid");
+					}
+					catch(AccNotFound e1) {
+						JOptionPane.showMessageDialog(getComponent(0), "Sorry! Account is Not Found");
+					}
+					finally{
+						textField.setText(null);
+						textField_1.setText(null);
+					}
 				}
-				finally
-				{
-					//file.Write(bank);
+				else {
 					textField.setText(null);
 					textField_1.setText(null);
 				}
-				
-					
-				}
-				else
-				{
-					textField.setText(null);
-					textField_1.setText(null);
-				}
-				
-					
-					
-				
 			}
 		});
 		btnDeposit.setBounds(73, 212, 89, 23);
@@ -128,7 +112,6 @@ public class DepositAcc extends JFrame implements Serializable {
 		
 		btnReset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
 				textField.setText(null);
 				textField_1.setText(null);
 			}

@@ -49,14 +49,12 @@ public class BankAccount implements Serializable {
 		return min_balance;
 	}
 
-	public double deposit(double amount)
-	{
+	public double deposit(double amount) {
 		balance+=amount;
 		return balance;
 	}
 	
-	public double withdraw(double amount) throws MaxWithdraw, MaxBalance
-	{
+	public double withdraw(double amount) throws MaxWithdraw, MaxBalance {
 		if((balance-amount)>=min_balance && amount<balance) {
 			balance-=amount;
 			return balance;

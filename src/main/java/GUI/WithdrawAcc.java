@@ -30,6 +30,7 @@ public class WithdrawAcc extends JFrame implements Serializable {
 	public JTextField textField;
 	public JTextField textField_1;
 	public JButton btnWithdraw;
+	public JButton btnReset;
 
 	/**
 	 * Create the frame.
@@ -77,7 +78,7 @@ public class WithdrawAcc extends JFrame implements Serializable {
 				String aacountNum;
 				double amt;
 				aacountNum=textField.getText();
-				amt=Double.parseDouble(textField_1.getText());
+				amt = Double.parseDouble(textField_1.getText());
 					try {
 						int a=JOptionPane.showConfirmDialog(getComponent(0), "Confirm?");
 						if(a==0) {
@@ -121,7 +122,7 @@ public class WithdrawAcc extends JFrame implements Serializable {
 		btnWithdraw.setBounds(73, 212, 89, 23);
 		contentPane.add(btnWithdraw);
 		
-		JButton btnReset = new JButton("Reset");
+		btnReset = new JButton("Reset");
 		btnReset.setBounds(243, 212, 89, 23);
 		contentPane.add(btnReset);
 		btnReset.addActionListener(new ActionListener() {

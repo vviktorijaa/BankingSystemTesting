@@ -1,4 +1,5 @@
 package GUI;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -36,16 +37,12 @@ public class AddAccount extends JFrame {
 		btnAddCurrentAccount = new JButton("Add Saving Account");
 		btnAddCurrentAccount.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(!GUIForm.addsavingsaccount.isVisible())
-				{
+				if(!GUIForm.addsavingsaccount.isVisible()) {
 					GUIForm.addsavingsaccount.setVisible(true);
 				}
-				else
-				{
+				else {
 					JOptionPane.showMessageDialog(getComponent(0), "Already Opened", "Warning", 0);
 				}
-			
-				
 				dispose();
 			}
 		});
@@ -55,17 +52,13 @@ public class AddAccount extends JFrame {
 		JButton button = new JButton("Add Current Account");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(!GUIForm.addcurrentacc.isVisible())
-				{
+				if(!GUIForm.addcurrentacc.isVisible()) {
 					GUIForm.addcurrentacc.setVisible(true);
 					dispose();
 				}
-				else
-				{
+				else {
 					JOptionPane.showMessageDialog(getComponent(0), "Already Opened", "Warning", 0);
 				}
-				
-				
 			}
 		});
 		button.setBounds(118, 124, 193, 38);
@@ -74,21 +67,14 @@ public class AddAccount extends JFrame {
 		JButton btnAddStudentAccount = new JButton("Add Student Account");
 		btnAddStudentAccount.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(!GUIForm.addstudentaccount.isVisible())
-				{
-					
+				if(!GUIForm.addstudentaccount.isVisible()) {
 					GUIForm.addstudentaccount.setVisible(true);
 					dispose();
 				}
-				
-				else
-				{
+				else {
 					JOptionPane.showMessageDialog(getComponent(0), "Already Opened", "Warning", 0);
 				}
-			
 			}
-			
-			
 		});
 		btnAddStudentAccount.setBounds(118, 190, 193, 38);
 		contentPane.add(btnAddStudentAccount);

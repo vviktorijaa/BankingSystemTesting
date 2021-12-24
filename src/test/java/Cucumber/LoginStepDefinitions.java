@@ -28,11 +28,11 @@ public class LoginStepDefinitions{
 
     @Then("^login is successful$")
     public void loginIsSuccessful() throws Exception {
-        GraphicsEnvironment.isHeadless();
+        System.out.println("Successful login");
     }
 
     @Then("login is unsuccessful")
     public void loginIsUnsuccessful() {
-        GraphicsEnvironment.isHeadless();
+        System.out.println("Unsuccessful login");
     }
 }

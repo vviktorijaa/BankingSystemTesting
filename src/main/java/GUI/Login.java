@@ -19,7 +19,7 @@ public class Login extends JFrame{
 	/**
 	 * Launch the application.
 	 * @throws FileNotFoundException 
-//	 */
+	 */
 
 	/**
 	 * Create the application.

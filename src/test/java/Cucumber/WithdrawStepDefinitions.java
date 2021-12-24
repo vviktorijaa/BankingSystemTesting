@@ -50,12 +50,12 @@ public class WithdrawStepDefinitions {
 
     @Then("^the withdraw is successful$")
     public void the_withdraw_is_successful() throws Exception {
-        GraphicsEnvironment.isHeadless();
+        System.out.println("Successful withdraw");
     }
 
     @Then("^the withdraw is unsuccessful$")
     public void the_withdraw_is_unsuccessful() throws Exception {
-        GraphicsEnvironment.isHeadless();
+        System.out.println("uccessful withdraw");
     }
 
 }

@@ -24,7 +24,7 @@ public class AddSavingsAccount extends JFrame {
 	public JTextField textField_1; //balance
 	public JTextField textField_2; //maxWithLimit
 	public JButton btnAdd;
-	public int ch;
+	public int ch=0;
 
 	/**
 	 * Create the frame.

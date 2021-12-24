@@ -76,57 +76,46 @@ public class AddCurrentAccount extends JFrame {
 		
 		JButton btnAdd = new JButton("Add");
 		btnAdd.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {			
-			//	FileIO file=new FileIO();
-				//Bank bank=file.Read();
+			public void actionPerformed(ActionEvent e) {
 				String name=textField.getText();
 				double bal=Double.parseDouble(textField_1.getText());
 				String trlic=textField_2.getText();
-				if(bal<5000)
-				{
+				if(bal<5000) {
 					JOptionPane.showMessageDialog(getComponent(0), "Minimum Limit 5000", "Warning", 0);
 					textField.setText(null);
 					textField_1.setText(null);
 					textField_2.setText(null);
 				}
-				else
-				{
-				if(name==null||bal<=0||trlic==null)
-				{
-					JOptionPane.showMessageDialog(getComponent(0),"Typing Mismatch!! Try Again");
-					textField.setText(null);
-					textField_1.setText(null);
-					textField_2.setText(null);
-				}
-				else
-				{
-					
-				int ch=JOptionPane.showConfirmDialog(getComponent(0), "Confirm?");
-				if(ch==0)
-				{
-					int index = 0;
-					try {
-						index = FileIO.bank.addAccount(name, bal, trlic);
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+				else {
+					if(name==null||bal<=0||trlic==null){
+						JOptionPane.showMessageDialog(getComponent(0),"Typing Mismatch!! Try Again");
+						textField.setText(null);
+						textField_1.setText(null);
+						textField_2.setText(null);
 					}
-					DisplayList.arr.addElement(FileIO.bank.getAccounts()[index].toString());
-					//file.Write(bank);
-					JOptionPane.showMessageDialog(getComponent(0),"Success");
-					dispose();
+					else {
+						int ch=JOptionPane.showConfirmDialog(getComponent(0), "Confirm?");
+						if(ch==0) {
+							int index = 0;
+							try {
+								index = FileIO.bank.addAccount(name, bal, trlic);
+							} catch (Exception e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							DisplayList.arr.addElement(FileIO.bank.getAccounts()[index].toString());
+							//file.Write(bank);
+							JOptionPane.showMessageDialog(getComponent(0),"Success");
+							dispose();
+						}
+						else {
+							JOptionPane.showMessageDialog(getComponent(0),"Failed");
+							textField.setText(null);
+							textField_1.setText(null);
+							textField_2.setText(null);
+						}
+					}
 				}
-				else 
-				{
-					JOptionPane.showMessageDialog(getComponent(0),"Failed");
-					textField.setText(null);
-					textField_1.setText(null);
-					textField_2.setText(null);
-				}
-								
-				}
-				}
-				
 			}
 		});
 		btnAdd.setBounds(86, 209, 89, 23);

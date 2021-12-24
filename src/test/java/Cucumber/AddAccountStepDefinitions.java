@@ -9,7 +9,6 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.assertj.swing.edt.GuiActionRunner;
-import java.awt.*;
 
 public class AddAccountStepDefinitions {
 
@@ -56,11 +55,27 @@ public class AddAccountStepDefinitions {
 
     @And("^click on the yes button in the confirm dialog box$")
     public void click_on_the_yes_button_in_the_confirm_dialog_box() throws Exception {
-        savingsAcc.ch = 0;
+//        savingsAcc.ch = JOptionPane.YES_OPTION;
+//        System.out.println(savingsAcc.ch = JOptionPane.YES_OPTION);
+        savingsAcc.ch=0;
+    }
+
+    @When("^click on the no button in the confirm dialog box$")
+    public void click_on_the_no_button_in_the_confirm_dialog_box() throws Exception {
+        savingsAcc.ch=1;
     }
 
     @Then("^the account is added successfully$")
     public void the_account_is_added_successfully() throws Exception {
-        GraphicsEnvironment.isHeadless();
+        if(savingsAcc.ch == 0){
+            System.out.println("Account added successfully");
+        }
+    }
+
+    @Then("^the account is not added$")
+    public void the_account_is_not_added() throws Exception {
+        if(savingsAcc.ch != 0){
+            System.out.println("Account not added");
+        }
     }
 }

@@ -19,7 +19,7 @@ public class DisplayList extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	static DefaultListModel<String> arr = new DefaultListModel<String>();
+	public static DefaultListModel<String> arr = new DefaultListModel<String>();
 	private JPanel contentPane;
 	
 	/**

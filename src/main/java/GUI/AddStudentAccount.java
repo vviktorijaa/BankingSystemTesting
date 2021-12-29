@@ -27,6 +27,7 @@ public class AddStudentAccount extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+
 	public AddStudentAccount() {
 		setTitle("Add Student Account");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -75,62 +76,52 @@ public class AddStudentAccount extends JFrame {
 		JButton btnAdd = new JButton("Add");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 //				FileIO file=new FileIO();
 				//Bank bank =file.Read();
 				String name=textField.getText();
 				double bal=Double.parseDouble(textField_1.getText());
 				String insname=textField_2.getText();
-				if(bal<100)
-				{
+				if(bal<100) {
 					JOptionPane.showMessageDialog(getComponent(0), "Minimum Limit 5000", "Warning", 0);
 					textField.setText(null);
 					textField_1.setText(null);
 					textField_2.setText(null);
 				}
-				else
-				{
-				if(name==null||bal<=0||insname==null)
-				{
-					JOptionPane.showMessageDialog(getComponent(0),"Typing Mismatch!! Try Again");
-					textField.setText(null);
-					textField_1.setText(null);
-					textField_2.setText(null);
-				}
-				else
-				{
-				try {
-					FileIO.bank.addAccount(name, bal, insname);
-				} catch (Exception e1) {
-					
-				}
-				int ch=JOptionPane.showConfirmDialog(getComponent(0), "Confirm?");
-				if(ch==0)
-				{
-					int index = 0;
-					try {
-						index = FileIO.bank.addAccount(name, bal, insname);
-					} catch (Exception e1) {
-						
+				else {
+					if(name==null||bal<=0||insname==null)
+					{
+						JOptionPane.showMessageDialog(getComponent(0),"Typing Mismatch!! Try Again");
+						textField.setText(null);
+						textField_1.setText(null);
+						textField_2.setText(null);
 					}
-					DisplayList.arr.addElement(FileIO.bank.getAccounts()[index].toString());
-					//file.Write(FileIO.bank);
-					JOptionPane.showMessageDialog(getComponent(0),"Added Successfully");
-					dispose();
+					else
+					{
+						try {
+							FileIO.bank.addAccount(name, bal, insname);
+						} catch (Exception e1) {
+
+						}
+						int ch=JOptionPane.showConfirmDialog(getComponent(0), "Confirm?");
+						if(ch==0) {
+							int index = 0;
+							try {
+								index = FileIO.bank.addAccount(name, bal, insname);
+							}
+							catch (Exception e1) {}
+							DisplayList.arr.addElement(FileIO.bank.getAccounts()[index].toString());
+							//file.Write(FileIO.bank);
+							JOptionPane.showMessageDialog(getComponent(0),"Added Successfully");
+							dispose();
+						}
+						else {
+							JOptionPane.showMessageDialog(getComponent(0),"Failed");
+							textField.setText(null);
+							textField_1.setText(null);
+							textField_2.setText(null);
+						}
+					}
 				}
-				else 
-				{
-					JOptionPane.showMessageDialog(getComponent(0),"Failed");
-					textField.setText(null);
-					textField_1.setText(null);
-					textField_2.setText(null);
-				}
-				
-				}
-				}
-				
-				
-				
 			}
 		});
 		btnAdd.setBounds(86, 209, 89, 23);
@@ -142,7 +133,6 @@ public class AddStudentAccount extends JFrame {
 				textField.setText(null);
 				textField_1.setText(null);
 				textField_2.setText(null);
-			
 			}
 		});
 		btnReset.setBounds(309, 209, 89, 23);

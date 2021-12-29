@@ -24,7 +24,7 @@ public class AddSavingsAccount extends JFrame {
 	public JTextField textField_1; //balance
 	public JTextField textField_2; //maxWithLimit
 	public JButton btnAdd;
-	public int ch=0;
+	public JButton btnReset;
 
 	/**
 	 * Create the frame.
@@ -94,7 +94,7 @@ public class AddSavingsAccount extends JFrame {
 						textField_2.setText(null);
 					}
 					else {
-						ch=JOptionPane.showConfirmDialog(getComponent(0), "Confirm?");
+						int ch=JOptionPane.showConfirmDialog(getComponent(0), "Confirm?");
 						if(ch==0) {
 							int index = FileIO.bank.addAccount(name, bal, maxw);
 							DisplayList.arr.addElement(FileIO.bank.getAccounts()[index].toString());
@@ -117,7 +117,7 @@ public class AddSavingsAccount extends JFrame {
 		btnAdd.setBounds(86, 209, 89, 23);
 		contentPane.add(btnAdd);
 		
-		JButton btnReset = new JButton("Reset");
+		btnReset = new JButton("Reset");
 		btnReset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textField.setText(null);

@@ -1,5 +1,6 @@
 package Cucumber;
 
+import GUI.DisplayList;
 import GUI.Login;
 import GUI.Menu;
 import cucumber.api.java.en.Given;
@@ -7,12 +8,13 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.assertj.swing.edt.GuiActionRunner;
 
-import java.awt.*;
+import static org.junit.Assert.assertTrue;
 
 public class DisplayAccountsStepDefinition {
 
     Login l = new Login();
     Menu m = new Menu();
+    DisplayList list = new DisplayList();
 
     @Given("The application is started")
     public void theApplicationIsStarted() {
@@ -27,6 +29,6 @@ public class DisplayAccountsStepDefinition {
 
     @Then("all the bank accounts must be displayed")
     public void allTheBankAccountsMustBeDisplayed() {
-        GraphicsEnvironment.isHeadless();
+        assertTrue(list.arr.size() != 0);
     }
 }

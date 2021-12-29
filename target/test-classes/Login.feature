@@ -1,5 +1,6 @@
-Feature: Login functionality
-
+#Feature: Login functionality
+#
+#  Scenario 1:
 #  Scenario: Successful login
 #    Given I start the application
 #    When I type the password "admin"

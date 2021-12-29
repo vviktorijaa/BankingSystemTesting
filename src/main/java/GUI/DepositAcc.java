@@ -24,7 +24,7 @@ public class DepositAcc extends JFrame implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	public JPanel contentPane;
 	public JTextField textField;
 	public JTextField textField_1;
 	public JButton btnDeposit;

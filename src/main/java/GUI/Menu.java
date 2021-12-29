@@ -24,7 +24,7 @@ public class Menu extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	public JPanel contentPane;
 	public JButton btnExit;
 	public JButton btnNewButton;
 	public JButton btnDisplayAccountList;
@@ -99,7 +99,7 @@ public class Menu extends JFrame {
 		btnExit = new JButton("Exit");
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(getComponent(0), "Thanks For Using") ;
+				//JOptionPane.showMessageDialog(getComponent(0), "Thanks For Using") ;
 				FileIO.Write();
 				System.exit(0);
 			}

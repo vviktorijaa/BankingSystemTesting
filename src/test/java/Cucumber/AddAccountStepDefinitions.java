@@ -10,12 +10,16 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.assertj.swing.edt.GuiActionRunner;
 
+import static org.junit.Assert.assertTrue;
+
 public class AddAccountStepDefinitions {
 
     Login l =new Login();
     Menu m = new Menu();
     AddAccount addAcc = new AddAccount();
     AddSavingsAccount savingsAcc = new AddSavingsAccount();
+    boolean t = true;
+
 
     @Given("^The application is started$")
     public void the_application_is_started() throws Exception {
@@ -53,29 +57,38 @@ public class AddAccountStepDefinitions {
         savingsAcc.btnAdd.doClick();
     }
 
+    @When("^click on the Reset button$")
+    public void click_on_the_Reset_button() throws Exception {
+        savingsAcc.btnReset.doClick();
+    }
+
     @And("^click on the yes button in the confirm dialog box$")
     public void click_on_the_yes_button_in_the_confirm_dialog_box() throws Exception {
-//        savingsAcc.ch = JOptionPane.YES_OPTION;
-//        System.out.println(savingsAcc.ch = JOptionPane.YES_OPTION);
-        savingsAcc.ch=0;
+
     }
 
     @When("^click on the no button in the confirm dialog box$")
     public void click_on_the_no_button_in_the_confirm_dialog_box() throws Exception {
-        savingsAcc.ch=1;
+    }
+
+    @Then("^the input fields must be empty$")
+    public void the_input_fields_must_be_empty() throws Exception {
+        assertTrue(savingsAcc.textField.getText().isEmpty() &&
+                    savingsAcc.textField_1.getText().isEmpty() &&
+                    savingsAcc.textField_2.getText().isEmpty());
     }
 
     @Then("^the account is added successfully$")
     public void the_account_is_added_successfully() throws Exception {
-        if(savingsAcc.ch == 0){
-            System.out.println("Account added successfully");
-        }
+//        if(savingsAcc.ch == 0){
+//            System.out.println("Account added successfully");
+//        }
     }
 
     @Then("^the account is not added$")
     public void the_account_is_not_added() throws Exception {
-        if(savingsAcc.ch != 0){
-            System.out.println("Account not added");
-        }
+//        if(savingsAcc.ch != 0){
+//            System.out.println("Account not added");
+//        }
     }
 }

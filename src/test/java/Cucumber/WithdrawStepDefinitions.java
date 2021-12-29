@@ -9,8 +9,6 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.assertj.swing.edt.GuiActionRunner;
 
-import java.awt.*;
-
 public class WithdrawStepDefinitions {
 
     Login l = new Login();

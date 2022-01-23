@@ -1,6 +1,5 @@
 package Bank;
 import java.io.Serializable;
-
 import Exceptions.MaxBalance;
 import Exceptions.MaxWithdraw;
 

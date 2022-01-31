@@ -13,6 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class BankLogicCov {
 
+    //CoC
+
     private Bank b;
 
     @BeforeEach

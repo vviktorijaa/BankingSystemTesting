@@ -2,15 +2,11 @@ package ISP;
 
 import Bank.Bank;
 import Bank.BankAccount;
-import Bank.SavingsAccount;
 import Exceptions.AccNotFound;
 import Exceptions.InvalidAmount;
 import Exceptions.MaxBalance;
 import Exceptions.MaxWithdraw;
 import org.junit.Test;
-
-import java.util.ArrayList;
-
 import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 

@@ -9,6 +9,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SavingsAccountLogicCov {
 
+    //CoC
+
     @Test
     public void testWithdraw() throws MaxBalance, MaxWithdraw {   //amount >= maxWithLimit
         SavingsAccount sa = new SavingsAccount("SavingsAccount", 1500, 1000);

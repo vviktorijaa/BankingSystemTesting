@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CurrentAccountLogicCov {
 
+    //CoC
+
     @Test
     public void test() throws Exception {
         assertThrows(Exception.class, () -> {

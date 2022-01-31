@@ -1,0 +1,29 @@
+Cucumber
+
+1. Login
+Scenario 1: Successful login
+Scenario 2: Unsuccessful login
+
+2. Display bank accounts
+Scenario 1: Display all bank accounts
+
+3. Add account
+Scenario 1: Reset information when adding savings account
+Scenario 2: Add savings account successfully
+Scenario 3: Add savings account unsuccessfully
+Scenario 4: Add savings account: empty input fields
+
+4. Withdraw:
+Scenario 1: Successful withdraw from an existing bank account
+Scenario 2: Unsuccessful withdraw from an existing bank account: amount > balance
+Scenario 3: Reset the inputted information in withdraw
+Scenario 4: Withdraw from an account: empty input fields
+
+5. Deposit:
+Scenario 1: Successful deposit to an existing account
+Scenario 2: Unsuccessful deposit to a bank account that does not exist
+Scenario 3: Reset inputted information due to wrong amount
+Scenario 4: Deposit from an account: empty input fields
+
+6. Exit
+Scenario 1: Close the application

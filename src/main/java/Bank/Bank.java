@@ -10,7 +10,7 @@ import Exceptions.MaxWithdraw;
 public class Bank implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private BankAccount[] accounts= new BankAccount[100];
+	private BankAccount[] accounts = new BankAccount[100];
 	public int addAccount(BankAccount acc)
 	{
 		int i=0;
@@ -23,7 +23,7 @@ public class Bank implements Serializable {
 		return i;
 	}
 	
-	public int addAccount(String name, double balance, double maxWithLimit ) {
+	public int addAccount(String name, double balance, double maxWithLimit) {
 		SavingsAccount acc=new SavingsAccount(name, balance, maxWithLimit);
 		return this.addAccount(acc);
 	}

@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 public class SavingsAccountISP {
 
     @Test
-    public void getNetBalance(){ //returns positive value - T
+    public void getNetBalance(){ //returns positive value
         SavingsAccount sa = new SavingsAccount("SavingsAccount", 2000, 10000);
         assertTrue(sa.getNetBalance() > 0);
     }

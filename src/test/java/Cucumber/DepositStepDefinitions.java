@@ -10,6 +10,9 @@ import cucumber.api.java.en.When;
 import org.assertj.swing.edt.GuiActionRunner;
 import java.awt.*;
 
+import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
+
 public class DepositStepDefinitions {
 
     Login l = new Login();
@@ -61,5 +64,18 @@ public class DepositStepDefinitions {
     @Then("the deposit is not successful")
     public void theDepositIsNotSuccessful() {
         GraphicsEnvironment.isHeadless();
+    }
+
+    @Then("^the input fields must be empty$")
+    public void the_input_fields_must_be_empty() throws Exception {
+        assertTrue(deposit.textField.getText().isEmpty() &&
+                deposit.textField_1.getText().isEmpty());
+    }
+
+    @Then("^Exception must be thrown when I click on the Deposit button$")
+    public void exception_must_be_thrown_when_I_click_on_the_Deposit_button() throws Exception {
+        assertThrows(NumberFormatException.class, () -> {
+            deposit.btnDeposit.doClick();
+        });
     }
 }

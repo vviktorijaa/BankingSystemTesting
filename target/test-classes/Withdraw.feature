@@ -22,7 +22,9 @@ Feature: Withdraw amount
     And input 16759 as Account Number
     And input 5000 in Amount field
     And click on the Reset button
-    And input 31556 as Account Number
-    And input 300 int Amount field
-    And click on the Withdraw button
-    Then the withdraw is successful
+    Then the input fields must be empty
+
+  Scenario: Withdraw from an account: empty input fields
+    Given The application is started
+    When I click on the Withdraw From Account button
+    Then Exception must be thrown when I click on the Withdraw button

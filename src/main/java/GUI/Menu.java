@@ -99,7 +99,7 @@ public class Menu extends JFrame {
 		btnExit = new JButton("Exit");
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//JOptionPane.showMessageDialog(getComponent(0), "Thanks For Using") ;
+				JOptionPane.showMessageDialog(getComponent(0), "Thanks For Using") ;
 				FileIO.Write();
 				System.exit(0);
 			}

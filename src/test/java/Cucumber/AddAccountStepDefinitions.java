@@ -9,7 +9,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.assertj.swing.edt.GuiActionRunner;
-
+import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
 public class AddAccountStepDefinitions {
@@ -80,15 +80,18 @@ public class AddAccountStepDefinitions {
 
     @Then("^the account is added successfully$")
     public void the_account_is_added_successfully() throws Exception {
-//        if(savingsAcc.ch == 0){
-//            System.out.println("Account added successfully");
-//        }
+
     }
 
     @Then("^the account is not added$")
     public void the_account_is_not_added() throws Exception {
-//        if(savingsAcc.ch != 0){
-//            System.out.println("Account not added");
-//        }
+
+    }
+
+    @Then("^Exception must be thrown when I click on the Add button$")
+    public void exception_must_be_thrown_when_I_click_on_the_Add_button() throws Exception {
+        assertThrows(Exception.class, () -> {
+            savingsAcc.btnAdd.doClick();
+        });
     }
 }

@@ -1,16 +1,11 @@
 package Cucumber;
 
-import GUI.DepositAcc;
 import GUI.Login;
 import GUI.Menu;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.assertj.swing.edt.GuiActionRunner;
-
-import javax.swing.*;
-
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class LoginStepDefinitions{

@@ -24,8 +24,9 @@ Feature: Deposit to account
     And input 16759 as Account Number
     And input 50 in Amount field
     And click on the Reset button
-    And input 16759 as Account Number
-    And input 500 in Amount field
-    And click on the Deposit button
-    And click on the Yes button
-    Then the deposit is successful
+    Then the input fields must be empty
+
+  Scenario: Deposit from an account: empty input fields
+    Given The application is started
+    When I click on the Deposit To Account button
+    Then Exception must be thrown when I click on the Deposit button
